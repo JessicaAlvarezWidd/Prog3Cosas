@@ -1,0 +1,39 @@
+public static function TraerEliminadosJSONYMostrarGrilla()	
+{		
+	$resultado = new stdClass();        
+	$resultado->exito = TRUE;		
+	require_once "./lib/nusoap.php";		
+	//$host = 'http://localhost/SegundoParcial/Romero.Federico.SPPIII/ws/FuncionesWS.php';		
+	$host = 'http://rfsegundoparcialp3.eshost.com.ar/Romero.Federico.SPPIII/ws/FuncionesWS.php';		
+	$client = new nusoap_client($host . '?wsdl');		
+	$err = $client->getError();		
+	if ($err)		
+	{			
+		$resultado->exito = FALSE;			
+		$resultado->mensaje = 'ERROR EN LA CONSTRUCCION DEL WS:\n' . $err . '.';		}		
+	else		
+	{			
+		$result = $client->call('TraerEliminadosJSONYMostrarGrilla');			
+	if ($client->fault)			
+	{				
+		$resultado->exito = FALSE;				
+		$resultado->mensaje = 'ERROR AL INVOCAR METODO:\n' . $result . '.';			}			
+	else 			
+	{
+		$err = $client->getError();				
+		if ($err)				
+		{					
+			$resultado->exito = FALSE;					
+			$resultado->mensaje = 'ERROR EN EL CLIENTE:\n' . $err . '.';				}				
+
+	else				
+	{					
+		if ($result == "ERROR")					
+		{						
+			$resultado->exito = FALSE;						
+			$resultado->mensaje = 'ERROR AL QUERER ABRIR EL ARCHIVO.';					}					
+	else						
+		$resultado->tabla = $result;				}			
+	}		
+	}		
+		return $resultado;	}}
