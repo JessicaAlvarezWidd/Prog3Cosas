@@ -1,0 +1,35 @@
+<html>
+
+<head>
+	<script type="text/javascript">
+
+	function Mostrar()
+	{
+		var productos=[{"codBarras": "011" , "nombre" : "lalal" , "precio" : "55"},
+		{"codBarras": "012" , "nombre" : "lolol" , "precio" : "50"},
+		{"codBarras": "013" , "nombre" : "lelel" , "precio" : "40"}];
+
+		for (var i = 0; i < productos.length ; i++) 
+		{
+			alert(productos[i].codBarras + " " + productos[i].nombre + " " + productos[i].precio);
+		};
+		
+
+		
+	}
+
+
+
+	</script>
+
+
+</head>
+
+<body>
+
+	<input type="button" value="Mostrar Datos" onclick="Mostrar()"/>
+
+</body>
+
+
+</html>
